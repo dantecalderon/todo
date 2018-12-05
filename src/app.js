@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const sassMiddleware = require('node-sass-middleware')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 
@@ -17,6 +18,13 @@ app.set('view engine', 'ejs')
 
 
 // Middlewares
+app.use(sassMiddleware({
+  src: __dirname,
+  dest: path.join(__dirname, 'public'),
+  debug: true,
+  outputStyle: 'compressed'
+}))
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: false }))
 
