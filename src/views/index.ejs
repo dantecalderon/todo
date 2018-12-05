@@ -62,7 +62,12 @@
     <div class="column">
       <div class='content'>
         <% for (let i = 0; i < tasks.length; i++) { %>
-          <li><b><%= tasks[i].title %></b> - <span><%= tasks[i].description %></span></li>
+          <div class='card'>
+            <li><b><%= tasks[i].title %></b> - <span><%= tasks[i].description %></span></li>
+            <a class='button <%= tasks[i].status ? 'is-dark' : 'is-success' %>' href='/turn/<%= tasks[i]._id %>'><%= tasks[i].status ? 'OPEN' : 'DONE' %></a>
+            <a class='button is-primary' href='/edit/<%= tasks[i]._id %>'>EDIT</a>
+            <a class='button is-danger' href='/delete/<%= tasks[i]._id %>'>DELETE</a>
+          </div>
         <% } %>
       </div>
     </div>
